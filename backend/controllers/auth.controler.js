@@ -100,7 +100,7 @@ export const login = async (req, res) => {
 export const logout = (req, res) => {
 
     try {
-        res.cookie("jwt",'',{maxAge: 0});
+        res.cookie("session_id",'',{maxAge: 0});
         res.status(200).json({message:"Logout successfully"})
     } catch (error) {
         console.log('error in login controller'.error.message);
@@ -110,4 +110,45 @@ export const logout = (req, res) => {
     }
     
 
+}
+
+
+export const updateProfile = async (req,res)=>
+{
+    try {
+        const {profilepic}=req.body;
+       const userId = req.user._id;
+       if(!profilepic)
+       {
+            return res.status(400).json({message:"Profile pic is required "})
+
+       } 
+
+       const uploadResponse= await cloudinary.uploader.upload(profilepic)
+       const updatedUser =await User.findByIdAndUpdate(userId,
+        {profile:uploadResponse.secure_url},
+        {new:true});
+
+       res.status(200).json(updatedUser)
+        
+    } catch (error) {
+        console.log('error in update profile ',error.message)
+        res.status(500).json({message:"internal error happened in profile Auth"})
+        
+        
+    }
+
+}
+
+export const checkAuth =async (req,res)=>
+{
+    try {
+        res.status(200).json(req.user);
+        
+    } catch (error) {
+        console.log('internal error in chechAuth ',error.message)
+        res.status(500).json({message:'Internal server error'});
+        
+        
+    }
 }
