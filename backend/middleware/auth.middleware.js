@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import User from '../models/user.model.js'
-import cookieparser from "cookie-parser"
+
 
 export const protectedRoute= async (req,res,next)=>{
     try {
