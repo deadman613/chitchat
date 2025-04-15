@@ -4,6 +4,7 @@ import dotenv from "dotenv"
 import connectDB from "./lib/db.js"
 import messageRoute from './routes/message.route.js'
 import cookieParser from 'cookie-parser'
+import cors from "cors"
 
 dotenv.config()
 const app =express();
@@ -14,6 +15,10 @@ app.use(cookieParser());
 
 app.use('/api/auth',authRoutes)
 app.use('/api/message',messageRoute)
+app.use(cors({
+    origin:"http://localhost:5173",
+    credentials:true
+}))
 
 app.get('/', (req, res) => {
     res.send("server is running");
