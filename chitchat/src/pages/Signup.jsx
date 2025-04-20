@@ -13,7 +13,8 @@ const Signup = () => {
     password: ""
   });
 
-  const { signup, isSignup } = useAuthStore();
+  const { Signup, isSignup } = useAuthStore();
+
   const navigate = useNavigate();
 
   const validateform = () => {
@@ -36,7 +37,7 @@ const Signup = () => {
     const valid = validateform();
     if (valid === true) {
       try {
-        await signup(formdata);
+        await Signup(formdata);
         toast.success("Signup successful!");
         console.log('signup succesfull');
         
@@ -62,7 +63,7 @@ const Signup = () => {
           </h2>
         </div>
 
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <div className="mt-10 shadow-2xl shadow-black sm:mx-auto sm:w-full sm:max-w-sm">
           <form onSubmit={handlesubmit} className="space-y-6">
             <div className='relative'>
               <label htmlFor="email" className="  block text-sm/6 font-medium text-gray-50">
@@ -158,7 +159,7 @@ const Signup = () => {
             Already have a Account?{' '}
 
           </p>
-          <NavLink className='text-red-600 mt-10 justify-center' to="/login" >  signup</NavLink>
+          <NavLink className='text-red-600 mt-10 justify-center' to="/login" > sign in</NavLink>
         </div>
 
 
