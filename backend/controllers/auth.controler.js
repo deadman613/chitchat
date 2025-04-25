@@ -69,7 +69,7 @@ export const signup = async (req, res) => {
       res.status(200).json({
         _id: user._id,
         Fullname: user.fullName,
-        gmail: user.gmail,
+        email: user.email,
         profilePic: user.profilePic,
       });
     } catch (error) {
