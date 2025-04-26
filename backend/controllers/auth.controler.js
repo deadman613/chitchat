@@ -42,7 +42,7 @@ export const signup = async (req, res) => {
         _id: newUser._id,
         Fullname: newUser.Fullname,
         email: newUser.email,
-        profilepic: newUser.profilepic,
+        profilePic: newUser.profilePic,
       });
     } catch (error) {
       console.log("Error in signup controller:", error.message);
@@ -68,7 +68,7 @@ export const signup = async (req, res) => {
   
       res.status(200).json({
         _id: user._id,
-        Fullname: user.fullName,
+        Fullname: user.Fullname,
         email: user.email,
         profilePic: user.profilePic,
       });

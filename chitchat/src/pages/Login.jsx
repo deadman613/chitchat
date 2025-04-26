@@ -86,7 +86,7 @@ const Login = () => {
             <button type="submit" className="btn text-gray-50 btn-primary w-full bg-gray-500 hover:bg-red-600 py-2.5 rounded-[8px] " disabled={isloggingIN}>
               {isloggingIN ? (
                 <>
-                  <Loader2 className="size-5 animate-spin" />
+                  <Loader2 className="size-5 flex mx-auto animate-spin" />
                   Loading...
                 </>
               ) : (
