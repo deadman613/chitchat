@@ -10,7 +10,7 @@ import { Settings, User ,LogOut } from "lucide-react"
     const {logout ,authUser}= useAuthStore();
 
   return (
-    <div className='bg-[#2e3333e0]  rounded shadow-lg shadow-black mb-8 w-full flex justify-between items-center red h-15'>
+    <div className='bg-linear-to-r from-[#573e63bd] to-[#9119f3]  rounded shadow-lg shadow-black mb-8 w-full flex justify-between items-center red h-15'>
       <div className='text-gray-50 flex gap-3  font-bold mx-4 font-sans  text-3xl'>
         <img src={symbol} alt=""  className='h-10 w-10  text-orange-500'/>
         ChitChat

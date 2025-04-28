@@ -1,10 +1,11 @@
 import User from '../models/user.model.js'
+import Message from "../models/message.model.js";
 
 export const getUserForsidebar = async (req,res)=>{
 
     try {
         const loggedInuserId = req.user._id;
-        const filterUsers = await User.find({_id:{$ne:loggedInuserId}}).select("-password");
+        const filterUsers = await User.find({_id:{$ne:loggedInuserId}}).select("password");
         
         res.status(200).json(filterUsers) 
 
@@ -23,10 +24,10 @@ export const getMessages = async (req,res)=>
         try {
             const {id:userToChatId} = req.params
             const myId = req.user._id;
-            const message =await MessageChannel.find({
+            const message =await Message.find({
                     $or:[
                         {senderId:myId ,receiverId:userToChatId},
-                        {senderId:userToChatId,receiver:myId}
+                        {senderId:userToChatId,receiverId:myId}
                     ]
 
             })
@@ -34,7 +35,7 @@ export const getMessages = async (req,res)=>
 
             res.status(200).json(message)
         } catch (error) {
-            console.log('error in message.controler.js',error.message);
+            console.log('ERRor in message.controler.js',error.message);
             res.status(500).json({message:"Internal server Error "});
             
             
@@ -56,7 +57,7 @@ export const sendMessages =async (req,res)=>{
         }
 
      
-         const newMessage = new message({
+         const newMessage = new Message({
             senderId,
             receiverId,
             text,
